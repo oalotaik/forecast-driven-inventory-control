@@ -1,39 +1,56 @@
-# Project Title
+# Forecast-Driven Periodic Review Inventory Management System
 
 ## Overview
-Brief description of your project, including its main purpose and key features. (2-3 sentences)
+A Python implementation of a periodic review inventory control system that uses demand forecasts to optimize order quantities and safety stock levels. The system simulates inventory dynamics over time, supports rolling safety stock updates based on forecast accuracy, and can project future inventory levels using forecast data beyond historical demand periods.
 
 ## Problem Statement
-- Describe the optimization/ML problem being solved
-- Key objectives
-- Constraints (if applicable)
+- Problem being solved: Managing inventory in a periodic review system where orders can only be placed at fixed intervals (e.g., weekly, monthly) and arrive after a lead time, while maintaining adequate service levels despite demand uncertainty
+- Key objectives:
+  - Minimize stockouts while avoiding excessive inventory holding costs
+  - Dynamically adjust safety stock based on forecast accuracy
+  - Project future inventory positions to enable proactive decision-making
+  - Track performance metrics including stockouts and periods below safety stock targets
+- Constraints:
+  - Orders can only be placed at review periods (not continuously)
+  - Orders arrive after a fixed lead time
+  - Demand uncertainty requires safety stock buffer
+  - Initial inventory level is fixed
 
 ## Methods/Architecture
-- List of algorithms/methods used (e.g., MILP, Genetic Algorithm, CNN, etc.)
-- Model architecture (for DL projects)
-- Optimization formulation (for exact methods)
-- Key parameters and hyperparameters
+- Algorithms/methods used:
+  - Periodic review (R,S) inventory policy with order-up-to level
+  - Safety stock calculation using forecast error standard deviation
+  - Rolling window forecast error calculation for adaptive safety stock
+  - Order quantity = max(0, Order-up-to level - Inventory position)
+  - Inventory position = On-hand inventory + In-transit orders
+- Key parameters and hyperparameters:
+  - lead_time: Time between order placement and receipt (periods)
+  - review_period: Interval between order opportunities (periods)
+  - safety_factor: Z-score for desired service level (e.g., 1.645 for 95%)
+  - initial_inventory: Starting inventory level
+  - use_rolling_ss: Enable/disable adaptive safety stock updates
+  - rolling_window: Window size for calculating rolling forecast error statistics
+  - include_review_period_in_ss: Whether to include review period in safety stock time factor
+  - Safety stock formula: safety_factor × std_error × sqrt(time_factor)
+    - Where time_factor is either lead_time or lead_time + review_period
 
 ## Requirements
 ```bash
-numpy==1.21.0
-pytorch==1.9.0
-scikit-learn==0.24.2
-# Add other dependencies
+numpy
+pandas
+matplotlib
 ```
 ## Project Structure
 
 ```basic
 ├── data/              # Dataset files
-│   ├── processed/     # Cleaned and processed data
-│   └── raw/          # Original data
-├── models/            # Trained models
-├── notebooks/         # Jupyter notebooks
-├── references/        # Papers, documentation, etc.
+│   ├── processed/     # Results of simulations
+│   └── raw/           # Original data
+├── notebooks/         # Jupyter notebooks, currently empty
+├── references/        # Safety Stock Formula used
 ├── src/              # Source code
-│   ├── data.py       # Data processing functions
-│   ├── models.py     # Model implementations
-│   └── utils.py      # Utility functions
+│   ├── experiment.py # Code to experiment with different inputs and settings
+│   └── utils.py      # Contains main function for implementing the periodic inventory system
 ├── .gitignore        # Git ignore file
 ├── README.md         # Project documentation
 └── requirements.txt  # Dependencies
@@ -41,20 +58,17 @@ scikit-learn==0.24.2
 
 ## Setup and Installation
 ```bash
-git clone https://github.com/username/project-name.git
-cd project-name
+git clone https://github.com/oalotaik/forecast-driven-inventory-control.git
+cd forecast-driven-inventory-control
 pip install -r requirements.txt
 ```
 
-## Results
-
-Summarize the main results
 
 ## Citation
 If this project was useful for your research, please cite:
 ```bash
 @article{Alotaik2025project,
-  title={Project Title},
+  title={Forecast-Driven Periodic Review Inventory Management System},
   author={Alotaik, O.},
   year={2025}
 }
