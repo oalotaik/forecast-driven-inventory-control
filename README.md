@@ -64,6 +64,13 @@ matplotlib
 └── requirements.txt  # Dependencies
 ```
 
+## Results
+Results are found in `data/processed` directory as CSV files. Below are only the plots of simulating inventory dynamics. The first plot shows results from `simulation_results.csv` where there is only historical demand and forecasts data (no future projections). The second plot shows results from `simulation_results_future_forecasts.csv` where there are forecasts beyond actual demand data.
+
+![Simulation Results with No Future Projections](https://github.com/oalotaik/forecast-driven-inventory-control/blob/main/images/simulation_results.png)
+
+![Simulation Results with Future Projections](https://github.com/oalotaik/forecast-driven-inventory-control/blob/main/images/simulation_results_future_forecasts.png)
+
 
 ## Setup and Installation
 ```bash
