@@ -16,7 +16,7 @@ A Python implementation of a periodic review inventory control system that uses 
   - Demand uncertainty requires safety stock buffer
   - Initial inventory level is fixed
 
-## Methods/Architecture
+## Methods
 - Algorithms/methods used:
   - Periodic review (R,S) inventory policy with order-up-to level
   - Safety stock calculation using forecast error standard deviation
@@ -24,15 +24,15 @@ A Python implementation of a periodic review inventory control system that uses 
   - Order quantity = max(0, Order-up-to level - Inventory position)
   - Inventory position = On-hand inventory + In-transit orders
 - Key parameters and hyperparameters:
-  - lead_time: Time between order placement and receipt (periods)
-  - review_period: Interval between order opportunities (periods)
-  - safety_factor: Z-score for desired service level (e.g., 1.645 for 95%)
-  - initial_inventory: Starting inventory level
-  - use_rolling_ss: Enable/disable adaptive safety stock updates
-  - rolling_window: Window size for calculating rolling forecast error statistics
-  - include_review_period_in_ss: Whether to include review period in safety stock time factor
+  - `lead_time`: Time between order placement and receipt (periods)
+  - `review_period`: Interval between order opportunities (periods)
+  - `safety_factor`: Z-score for desired service level (e.g., 1.645 for 95%)
+  - `initial_inventory`: Starting inventory level
+  - `use_rolling_ss`: Enable/disable adaptive safety stock updates
+  - `rolling_window`: Window size for calculating rolling forecast error statistics
+  - `include_review_period_in_ss`: Whether to include review period in safety stock time factor
   - Safety stock formula: safety_factor × std_error × sqrt(time_factor)
-    - Where time_factor is either lead_time or lead_time + review_period
+    - Where `time_factor` is either `lead_time` or `lead_time + review_period`
 
 ## Requirements
 ```bash
