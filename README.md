@@ -45,9 +45,17 @@ matplotlib
 ```basic
 ├── data/              # Dataset files
 │   ├── processed/     # Results of simulations
+│   │   ├── simulation_results_future_forecasts.csv   # Results of simulation with future projections
+│   │   └── simulation_results.csv   # Results of simulation without future projections
 │   └── raw/           # Original data
+│       ├── sample_future_forecasts.csv   # Sample raw data with future forecasts
+│       └── sample.csv   # Sample raw data with no future forecasts; only historical demand and forecasts
+├── images/            # Resulting plots from running experiment.py
+│   ├── simulation_results_future_forecasts.png     # Resulting plot with future projections
+│   └── simulation_results.png       # Resulting plot with only historical data (no future projections)
 ├── notebooks/         # Jupyter notebooks, currently empty
 ├── references/        # Safety Stock Formula used
+│   └── safety-stock-formula.jpg      # Image of safety stock formula taken from Nicolas Vandeput LinkedIn
 ├── src/              # Source code
 │   ├── experiment.py # Code to experiment with different inputs and settings
 │   └── utils.py      # Contains main function for implementing the periodic inventory system
@@ -55,6 +63,7 @@ matplotlib
 ├── README.md         # Project documentation
 └── requirements.txt  # Dependencies
 ```
+
 
 ## Setup and Installation
 ```bash
